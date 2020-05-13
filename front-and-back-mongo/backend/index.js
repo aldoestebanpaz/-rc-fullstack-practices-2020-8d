@@ -1,61 +1,20 @@
+require('dotenv').config()
+
 const express = require('express')
+const cors = require('cors')
+const morgan = require('morgan')
 const app = express()
 const port = 3001
 
+app.use(cors());
+app.use(morgan('dev'));
 app.use(express.json()); // para poder recibir JSONs en las request
 
+require('./database');
 
+const v1Routes = require('./routes');
 
-
-
-
-
-
-
-
-
-const mongoose = require('mongoose');
-const databaseName = 'rc8d';
-mongoose.connect('mongodb://localhost/' + databaseName, {useNewUrlParser: true});
-// const db = mongoose.connection;
-// db.once('open', function() {
-//   console.log("Connected to " + databaseName);
-// });
-
-const projectsSchema = new mongoose.Schema({
-  name: String,
-  description: String,
-  date: { type: Date, default: Date.now }
-});
-const ProjectsModel = mongoose.model('projects', projectsSchema);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-app.post('/v1/projects', (req, res) => {
-
-  console.log(req.body);
-  const document = req.body;
-  
-  const project = new ProjectsModel(document);
-  project.save();
-
-  res.json({ message: "The new project has been created" });
-})
-
-app.get('/v1/', (req, res) => {
-  res.json({ message: "The server is working" });
-})
+app.use('/api/v1', v1Routes);
 
 app.use(function (req, res, next) {
   res.status(404).json({ message: "Sorry can't find that!" })

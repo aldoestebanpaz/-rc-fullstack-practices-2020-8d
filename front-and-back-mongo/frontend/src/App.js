@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import HomePage from './pages/HomePage';
+import ArticlePage from './pages/ArticlePage';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <div className="container">
         <div className="row">
           <Switch>
+            <Route path="/article/:id" component={ArticlePage} />
             <Route path="/" component={HomePage} />
           </Switch>
         </div>
