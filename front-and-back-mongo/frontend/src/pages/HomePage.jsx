@@ -27,6 +27,7 @@ function HomePage() {
   return (
     <div>
       <h1>Home Page</h1>
+      <Link to="/article/create">Create</Link>
       <div className="card-columns">
         { cards }
       </div>
