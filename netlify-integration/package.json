@@ -1,0 +1,22 @@
+{
+  "name": "frontend-backend-integration",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf dist && mkdirp dist/functions && mkdirp dist/frontend && npm run build:backend && npm run build:frontend",
+    "build:backend": "cd backend && npm install && cd .. && netlify-lambda build src",
+    "build:frontend": "cd frontend && npm install && npm run build && mv build/* ../dist/frontend"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "mkdirp": "^1.0.4",
+    "netlify-lambda": "^1.6.3",
+    "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "serverless-http": "^2.5.0"
+  }
+}
