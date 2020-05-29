@@ -63,7 +63,7 @@ exports.login = async (req, res) => {
   };
   
   try {
-    const token = jsonwebtoken.sign(jwt_payload, process.env.JWT_SECRET, { expiresIn: '1m' });
+    const token = jsonwebtoken.sign(jwt_payload, process.env.JWT_SECRET, { expiresIn: process.env.TOKEN_EXP_TIME });
     user_in_db.token = [ token ];
     await UserModel.update({ username: user_in_db.username }, user_in_db);
     res.send({ message: 'User logged in succesfully', token });

@@ -4,6 +4,8 @@ import './App.css';
 import HomePage from './pages/HomePage';
 import ArticlePage from './pages/ArticlePage';
 import CreateEditArticlePage from './pages/CreateEditArticlePage'
+import SignupPage from './pages/SignupPage'
+import SigninPage from './pages/SigninPage'
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
             <Route path="/article/create" exact component={CreateEditArticlePage} />
             <Route path="/article/edit/:id" component={CreateEditArticlePage} />
             <Route path="/article/:id" component={ArticlePage} />
+            <Route path="/users/signup" component={SignupPage} />
+            <Route path="/users/signin" component={SigninPage} />
             <Route path="/" component={HomePage} />
           </Switch>
         </div>
