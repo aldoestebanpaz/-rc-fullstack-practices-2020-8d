@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
+import PrivateLink from '../components/PrivateLink';
+import auth from '../utils/auth';
 
 function ArticlePage() {
 
@@ -28,8 +30,14 @@ function ArticlePage() {
 
   return (
     <div className="col">
-      <Link to={`/article/edit/${params.id}`}>Edit</Link>
-      <button onClick={onClickDeleteHandler}>Delete</button>
+      <PrivateLink to={`/article/edit/${params.id}`}>Edit</PrivateLink>
+      {
+        auth.isAuthenticated()
+          ? <>
+              <button onClick={onClickDeleteHandler}>Delete</button>
+            </>
+          : ''
+      }
       <h1>{article.title}</h1>
       <hr/>
       <p className="card-text">{article.body}</p>

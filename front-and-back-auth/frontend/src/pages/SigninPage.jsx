@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import sweetalert from 'sweetalert';
+import auth from '../utils/auth';
 
 function SigninPage() {
 
@@ -30,7 +31,7 @@ function SigninPage() {
         username: username.trim(),
         password: password.trim()
       });
-      localStorage.setItem('token', response.data.token);
+      auth.login(response.data.token);
       history.push('/');
     } catch (error) {
       sweetalert("ERROR", "Something went wrong", "error");

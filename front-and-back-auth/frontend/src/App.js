@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
+import PrivateRoute from './components/PrivateRoute';
 import HomePage from './pages/HomePage';
 import ArticlePage from './pages/ArticlePage';
 import CreateEditArticlePage from './pages/CreateEditArticlePage'
@@ -13,8 +14,8 @@ function App() {
       <div className="container">
         <div className="row">
           <Switch>
-            <Route path="/article/create" exact component={CreateEditArticlePage} />
-            <Route path="/article/edit/:id" component={CreateEditArticlePage} />
+            <PrivateRoute path="/article/create" exact component={CreateEditArticlePage} />
+            <PrivateRoute path="/article/edit/:id" component={CreateEditArticlePage} />
             <Route path="/article/:id" component={ArticlePage} />
             <Route path="/users/signup" component={SignupPage} />
             <Route path="/users/signin" component={SigninPage} />

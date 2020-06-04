@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Auth from '../utils/auth';
 import sweetalert from 'sweetalert';
+import auth from '../utils/auth';
+import PrivateLink from '../components/PrivateLink';
 
 function HomePage() {
 
@@ -27,14 +28,8 @@ function HomePage() {
 
   const signOutHandler = async () => {
     try {
-      await axios.get('/api/v1/users/logout',
-        {
-          headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-          }
-        }
-      );
-      localStorage.removeItem('token');
+      await axios.get('/api/v1/users/logout');
+      auth.logout();
       setForceUpdate(true);
     } catch (error) {
       sweetalert("ERROR", "Something went wrong", "error");
@@ -54,14 +49,14 @@ function HomePage() {
     <div>
       <h1>Home Page</h1>
       {
-        Auth.isAuthenticated() ?
+        auth.isAuthenticated() ?
           <button onClick={signOutHandler}>Sign Out</button> :
           <>
             <Link to="/users/signin">Sign In</Link>
             <Link to="/users/signup">Sign Up</Link>
           </>
       }
-      <Link to="/article/create">Create</Link>
+      <PrivateLink to="/article/create">Create</PrivateLink>
       <div className="card-columns">
         { cards }
       </div>
