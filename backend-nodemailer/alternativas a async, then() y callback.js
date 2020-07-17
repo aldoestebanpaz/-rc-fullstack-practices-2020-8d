@@ -1,6 +1,5 @@
 
 
-
 // Callback function
   transporter.sendMail(mailOptions, (err, data) => {
     if (err) {
@@ -10,7 +9,6 @@
     res.send(req.body)
     return console.log('Email sent!!!');
   });
-
 
 
 // Promise implementation with .then()

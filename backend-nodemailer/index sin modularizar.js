@@ -9,6 +9,7 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json()); // para poder recibir JSONs en las request
 
+
 // Step 1
 // Crear el objeto transport con las credenciales de gmail
 const transporter = nodemailer.createTransport({
@@ -18,6 +19,7 @@ const transporter = nodemailer.createTransport({
         pass: process.env.PASSWORD // your gmail password
     }
 });
+
 
 // Un endpoint en cual implementar la api
 app.post('/mailer', async (req, res) => {
@@ -29,7 +31,7 @@ app.post('/mailer', async (req, res) => {
         from: process.env.EMAIL || 'uncorreo@gmail.com', // email sender
         to: email, // email receiver
         subject: subject, // email title
-        // text: 'Wooohooo it works!!', // plain text body for old devices
+        text: 'Wooohooo it works!!', // plain text body for old devices
         html: `
             <div>
                 <h2>El título</h2>

@@ -13,16 +13,14 @@ app.use(express.json()); // para poder recibir JSONs en las request
 app.post('/mailer', async (req, res) => {
     //Para generar datos dinámicos de prueba, recibimos el contenido y destino del mail de la request.
     const { email, msg = '', subject } = req.body;
-    
+
     try {
         //Implementación de nodeMailer con una función externa en el controlador
         await sendNodeMail({ email, subject, msg })
-        res.send({ msg: 'Email sent!!!', status: 'ok' })
-        return console.log('Email sent!!!');
+        return res.send({ msg: 'Email sent!!!', status: 'ok' })
 
     } catch (err) {
-        res.status(401).send(err)
-        return console.error(err)
+        return res.status(401).send(err)
     }
 })
 

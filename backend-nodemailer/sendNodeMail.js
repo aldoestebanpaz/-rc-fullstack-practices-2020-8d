@@ -13,8 +13,7 @@ const sendNodeMail = ({ email, subject, msg }) => {
     const mailOptions = {
         from: process.env.EMAIL || 'uncorreo@gmail.com', // email sender
         to: email, // email receiver
-        subject: subject,
-        // text: 'Wooohooo it works!!', // plain text body for old devices
+        subject,
         html: `
             <div>
                 <h2>El título</h2>
