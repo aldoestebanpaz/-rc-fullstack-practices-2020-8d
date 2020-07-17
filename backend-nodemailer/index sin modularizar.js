@@ -26,7 +26,7 @@ app.post('/mailer', async (req, res) => {
     // Step 2
     // Crear las options con los datos necesarios para el correo
     const mailOptions = {
-        from: 'nodemailerjj@gmail.com', // email sender
+        from: process.env.EMAIL || 'uncorreo@gmail.com', // email sender
         to: email, // email receiver
         subject: subject, // email title
         // text: 'Wooohooo it works!!', // plain text body for old devices

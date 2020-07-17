@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
 const sendNodeMail = ({ email, subject, msg }) => {
     //La función recibe por parámetros los datos a llenar en el correo
     const mailOptions = {
-        from: 'nodemailerjj@gmail.com', // email sender
+        from: process.env.EMAIL || 'uncorreo@gmail.com', // email sender
         to: email, // email receiver
         subject: subject,
         // text: 'Wooohooo it works!!', // plain text body for old devices
